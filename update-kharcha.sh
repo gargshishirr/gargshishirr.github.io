@@ -16,6 +16,8 @@ cat > "$APP/app.config.js" <<'JS'
 module.exports = ({ config }) => ({ ...config, experiments: { ...config.experiments, baseUrl: '/kharcha' } });
 JS
 (cd "$APP" && CI=1 npx expo export --platform web --output-dir "$OUT/web")
+# Links from the Kharcha bot open /kharcha/connect-bot/: GitHub Pages serves that page as its own copy of the app.
+mkdir -p "$OUT/web/connect-bot" && cp "$OUT/web/index.html" "$OUT/web/connect-bot/index.html"
 rm -rf "$SITE/kharcha" && cp -R "$OUT/web" "$SITE/kharcha"
 cd "$SITE"
 git add -A kharcha
