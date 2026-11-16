@@ -1,6 +1,6 @@
 # gargshishirr.github.io
 
-Shishir Garg's GitHub Pages site.
+Shishir Garg's GitHub Pages site. How to update and maintain it: **[GUIDE.md](GUIDE.md)**.
 
 | Address | What it is |
 |---|---|
