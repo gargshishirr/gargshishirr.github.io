@@ -38,12 +38,18 @@ let boxes = document.getElementsByClassName("box");
 Array.from(boxes).forEach(element =>{
     let boxtext = element.querySelector('.boxtext');
     element.addEventListener('click', ()=>{
-        if(boxtext.innerText === ''){
+        if(boxtext.innerText === '' && !isgameover){
             boxtext.innerText = turn;
             turn = changeTurn();
             audioTurn.play();
             checkWin();
-            if (!isgameover){
+            if (!isgameover && Array.from(document.getElementsByClassName('boxtext')).every(b => b.innerText !== '')){
+                document.getElementsByClassName("info")[0].innerText = "It's a draw"
+                isgameover = true
+            }
+            if (isgameover){
+                gameover.play();
+            } else {
                 document.getElementsByClassName("info")[0].innerText  = "Turn for " + turn;
             } 
         }
