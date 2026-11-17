@@ -15,7 +15,7 @@ trap cleanup EXIT
 cat > "$APP/app.config.js" <<'JS'
 module.exports = ({ config }) => ({ ...config, experiments: { ...config.experiments, baseUrl: '/kharcha' } });
 JS
-(cd "$APP" && CI=1 npx expo export --platform web --output-dir "$OUT/web")
+(cd "$APP" && CI=1 npx expo export --platform web --clear --output-dir "$OUT/web")
 # GitHub Pages answers unknown addresses with 404.html, which saves the address and opens /kharcha/. This puts the
 # saved screen back (only paths inside /kharcha/) before the app starts, so links like /kharcha/add?amount=40 work.
 node -e '
