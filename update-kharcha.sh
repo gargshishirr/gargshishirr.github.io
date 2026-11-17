@@ -16,6 +16,16 @@ cat > "$APP/app.config.js" <<'JS'
 module.exports = ({ config }) => ({ ...config, experiments: { ...config.experiments, baseUrl: '/kharcha' } });
 JS
 (cd "$APP" && CI=1 npx expo export --platform web --output-dir "$OUT/web")
+# GitHub Pages answers unknown addresses with 404.html, which saves the address and opens /kharcha/. This puts the
+# saved screen back (only paths inside /kharcha/) before the app starts, so links like /kharcha/add?amount=40 work.
+node -e '
+const fs = require("fs");
+const file = process.argv[1];
+const restore = "<script>(function(){try{var r=sessionStorage.getItem(\"kharcha-route\");if(r){sessionStorage.removeItem(\"kharcha-route\");if(r.indexOf(\"/kharcha/\")===0)history.replaceState(null,\"\",r);}}catch(e){}})();</script>";
+const html = fs.readFileSync(file, "utf8");
+if (!html.includes("<head>")) throw new Error("no <head> in " + file);
+fs.writeFileSync(file, html.replace("<head>", "<head>" + restore));
+' "$OUT/web/index.html"
 # Links from the Kharcha bot open /kharcha/connect-bot/: GitHub Pages serves that page as its own copy of the app.
 mkdir -p "$OUT/web/connect-bot" && cp "$OUT/web/index.html" "$OUT/web/connect-bot/index.html"
 rm -rf "$SITE/kharcha" && cp -R "$OUT/web" "$SITE/kharcha"

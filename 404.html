@@ -5,9 +5,13 @@
   <title>Page not found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
-    // Kharcha is a single-page app: a reload on one of its screens opens the app again.
+    // Kharcha is a single-page app. Keep the screen and its details (e.g. /kharcha/add?amount=40) for the
+    // app's own page, which puts them back in the address bar before Kharcha starts.
     var p = location.pathname;
-    if (p.indexOf('/kharcha/') === 0) location.replace('/kharcha/');
+    if (p.indexOf('/kharcha/') === 0) {
+      try { sessionStorage.setItem('kharcha-route', p + location.search + location.hash); } catch (e) {}
+      location.replace('/kharcha/');
+    }
   </script>
 </head>
 <body>
