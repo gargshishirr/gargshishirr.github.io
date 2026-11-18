@@ -10,6 +10,7 @@ portfolio. The apps' source code lives in their own repositories.
 | [gargshishirr.github.io](https://gargshishirr.github.io/) | Sends you to the [portfolio](https://gargshishirr.github.io/PortfolioWebsite/) |
 | [/kharcha/](https://gargshishirr.github.io/kharcha/) | **Kharcha**, the expense tracker, in the browser |
 | [/kharcha/connect-bot/](https://gargshishirr.github.io/kharcha/connect-bot/) | Where links from the Kharcha WhatsApp bot open |
+| [/kharcha-privacy.html](https://gargshishirr.github.io/kharcha-privacy.html) | Kharcha's privacy page (linked from Google's sign-in screen) |
 | [/tic-tac-toe/](https://gargshishirr.github.io/tic-tac-toe/) | **Tic Tac Toe**, with sound effects |
 
 The portfolio, MedRecords and Pathfinder have their own repositories and appear under
